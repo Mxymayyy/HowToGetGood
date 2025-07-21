@@ -7,40 +7,45 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100vh; /* ทำให้ body สูงเต็ม viewport */
     margin: 0;
     background-color: #f0f8ff;
     color: #333;
     text-align: center;
-    position: relative; /* สำคัญ: ทำให้ position absolute ของปุ่มอ้างอิงกับ body */
-    overflow-x: hidden; /* ป้องกันการเกิด scrollbar แนวนอน */
-    overflow-y: hidden;
+    position: relative;
+    overflow: hidden; /* **สำคัญ:** ซ่อน scrollbar ทั้งแนวตั้งและแนวนอน */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 .container {
-    padding: 20px;
+    display: flex; /* ใช้ Flexbox เพื่อจัดเรียงเนื้อหาภายใน container */
+    flex-direction: column; /* จัดเรียงเป็นคอลัมน์ (บนลงล่าง) */
+    justify-content: center; /* จัดเนื้อหาให้อยู่กึ่งกลางแนวตั้ง */
+    align-items: center; /* จัดเนื้อหาให้อยู่กึ่งกลางแนวนอน */
+    padding: 3vmin; /* ใช้ vmin เพื่อให้ padding ปรับขนาดตามหน้าจอ */
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 90%; /* ให้ container กว้างไม่เกิน 90% ของหน้าจอ */
-    width: 320px; /* กำหนดความกว้างเริ่มต้นสำหรับมือถือ (จะถูก override ด้วย max-width หากหน้าจอใหญ่กว่า) */
-    box-sizing: border-box; /* ทำให้ padding และ border ไม่เพิ่มขนาดรวมของ element */
+    width: 95%; /* เกือบเต็มความกว้างหน้าจอ */
+    box-sizing: border-box;
 }
 
 h1 {
-    font-size: 1.8rem; /* ใช้ rem เพื่อให้ยืดหยุ่น */
+    font-size: 5vmin; /* ใช้ vmin เพื่อปรับขนาดตามหน้าจอ */
     color: #2e8b57;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2vmin;
 }
 
 p {
-    font-size: 1rem;
+    font-size: 3.5vmin; /* ใช้ vmin */
     line-height: 1.5;
+    margin-top: 1vmin;
 }
 
 /* สไตล์เฉพาะสำหรับหน้าเปลี่ยนด้าน */
 #change-side-screen h1 {
-    font-size: 2.5rem;
+    font-size: 7vmin;
     color: #ff4500;
     animation: bounceIn 0.8s;
 }
@@ -81,16 +86,17 @@ p {
 }
 
 button {
-    padding: 1rem 2rem; /* ใช้ rem */
-    font-size: 1.2rem;  /* ใช้ rem */
+    padding: 2vmin 4vmin; /* ใช้ vmin */
+    font-size: 4vmin;  /* ใช้ vmin */
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 1.5rem; /* ใช้ rem */
-    width: 100%; /* ให้ปุ่มกว้างเต็มพื้นที่บนมือถือ */
+    margin-top: 3vmin; /* ใช้ vmin */
+    width: 90%; /* ให้ปุ่มกว้างเกือบเต็มพื้นที่บนมือถือ */
+    max-width: 300px; /* จำกัดความกว้างสูงสุด */
     box-sizing: border-box;
 }
 
@@ -99,35 +105,33 @@ button:hover {
 }
 
 #countdown-display {
-    font-size: 4rem; /* ใช้ rem */
+    font-size: 15vmin; /* ทำให้ใหญ่ม้าก! */
     color: #ff4500;
 }
 
 #brushing-video {
-    max-width: 100%; /* ให้วิดีโอกว้างไม่เกิน container */
+    width: 100%; /* ให้วิดีโอกว้างเต็ม container */
     height: auto;
+    max-height: 50vh; /* จำกัดความสูงไม่ให้วิดีโอใหญ่เกินไป */
+    object-fit: contain; /* ให้วิดีโอแสดงผลครบถ้วนไม่โดนตัด ถ้าจะให้เต็มเฟรมแบบตัดขอบใช้ 'cover' */
     border-radius: 8px;
-    margin-top: 1.5rem;
+    margin-top: 2vmin;
 }
 
 /* สไตล์สำหรับรูปภาพ Warning และ Correct */
-#warning-image{
-    max-width: 80%; /* จำกัดขนาดรูปภาพไม่ให้ใหญ่เกินไป */
+#warning-image {
+    max-width: 90%; /* ให้รูปภาพขยายเกือบเต็ม container */
     height: auto;
-    margin-bottom: 1rem;
+    object-fit: contain; /* หรือ 'cover' ถ้าต้องการให้เต็มและตัดขอบ */
+    margin-bottom: 2vmin;
     animation: bounceIn 0.8s;
 }
-#correct-image {
-    max-width: 20%; /* จำกัดขนาดรูปภาพไม่ให้ใหญ่เกินไป */
-    height: auto;
-    margin-bottom: 1rem;
-    animation: bounceIn 0.8s;
-}
+
 /* สไตล์สำหรับ Progress Bar */
 #video-progress {
-    width: 90%; /* ให้ Progress Bar กว้างขึ้นบนมือถือ */
-    height: 12px; /* ลดความสูงลงเล็กน้อย */
-    margin-top: 1rem;
+    width: 90%;
+    height: 1.5vmin; /* ปรับความสูงด้วย vmin */
+    margin-top: 2vmin;
     -webkit-appearance: none;
     appearance: none;
     border: none;
@@ -154,17 +158,17 @@ button:hover {
 /* สไตล์สำหรับปุ่มกลับไปหน้าเริ่มต้น (ไอคอนลูกศร) */
 #back-button-container {
     position: absolute;
-    top: 15px; /* ลดระยะห่างจากขอบบน */
-    left: 15px; /* ลดระยะห่างจากขอบซ้าย */
+    top: 3vmin; /* ใช้ vmin */
+    left: 3vmin; /* ใช้ vmin */
     background-color: #f44336;
     color: white;
     border-radius: 50%;
-    width: 40px; /* ลดขนาดปุ่ม */
-    height: 40px;
+    width: 8vmin; /* ใช้ vmin */
+    height: 8vmin; /* ใช้ vmin */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3rem; /* ลดขนาดไอคอน */
+    font-size: 5vmin; /* ใช้ vmin */
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -181,28 +185,92 @@ button:hover {
 }
 
 /*
- * ส่วนที่ 2: Media Queries สำหรับหน้าจอขนาดกลาง (เช่น แท็บเล็ต)
+ * ส่วนที่ 2: Media Queries สำหรับหน้าจอขนาดกลาง (เช่น แท็บเล็ตและคอมพิวเตอร์จอเล็ก)
  * สไตล์เหล่านี้จะถูกใช้เมื่อหน้าจอมีความกว้างอย่างน้อย 600px
  */
 @media (min-width: 600px) {
     .container {
-        width: 60%; /* กว้าง 60% ของหน้าจอ แต่ไม่เกิน 500px */
-        max-width: 500px;
-        padding: 30px;
+        width: 80%;
+        max-width: 600px; /* เพิ่ม max-width สำหรับจอขนาดกลาง */
+        padding: 4vmin;
     }
 
     h1 {
-        font-size: 2.2rem;
+        font-size: 4vmin;
+    }
+
+    p {
+        font-size: 2.5vmin;
+    }
+
+    #change-side-screen h1 {
+        font-size: 6vmin;
     }
 
     button {
-        padding: 1.2rem 2.5rem;
-        font-size: 1.4rem;
+        padding: 2.5vmin 5vmin;
+        font-size: 3.5vmin;
         width: auto; /* ปุ่มกลับมากว้างเท่าที่เนื้อหาต้องการ */
+        max-width: 400px;
+    }
+
+    #countdown-display {
+        font-size: 12vmin;
+    }
+
+    #brushing-video {
+        max-height: 60vh;
+    }
+
+    #video-progress {
+        width: 80%;
+        height: 1.2vmin;
+    }
+
+    #back-button-container {
+        top: 4vmin;
+        left: 4vmin;
+        width: 6vmin;
+        height: 6vmin;
+        font-size: 4vmin;
+    }
+}
+
+/*
+ * ส่วนที่ 3: Media Queries สำหรับหน้าจอขนาดใหญ่ (เช่น เดสก์ท็อปทั่วไป)
+ * สไตล์เหล่านี้จะถูกใช้เมื่อหน้าจอมีความกว้างอย่างน้อย 992px
+ */
+@media (min-width: 992px) {
+    .container {
+        width: 450px; /* กำหนดความกว้างคงที่ที่เหมาะสม */
+        min-height: 500px; /* เพิ่มความสูงขั้นต่ำ */
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* กลับมาใช้ rem หรือ px สำหรับควบคุมที่แม่นยำบนจอใหญ่ */
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+
+    #change-side-screen h1 {
+        font-size: 3rem;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 1.5rem;
+        width: auto;
     }
 
     #countdown-display {
         font-size: 5rem;
+    }
+
+    #brushing-video {
+        max-height: 400px; /* จำกัดความสูงวิดีโอเป็น px */
     }
 
     #video-progress {
@@ -215,26 +283,6 @@ button:hover {
         left: 20px;
         width: 45px;
         height: 45px;
-        font-size: 1.5rem;
-    }
-}
-
-/*
- * ส่วนที่ 3: Media Queries สำหรับหน้าจอขนาดใหญ่ (เช่น เดสก์ท็อป)
- * สไตล์เหล่านี้จะถูกใช้เมื่อหน้าจอมีความกว้างอย่างน้อย 992px
- */
-@media (min-width: 992px) {
-    .container {
-        width: 400px; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
-        max-width: 400px; /* จำกัดไม่ให้กว้างเกิน 400px */
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    button {
-        padding: 1.5rem 3rem;
         font-size: 1.5rem;
     }
 }
