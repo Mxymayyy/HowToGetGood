@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // รายการวิดีโอแปรงฟันของคุณ (ใส่ path relative)
     const videoList = [
-        'Videos/brushing_1.mp4',
-        'Videos/brushing_2.mp4',
-        'Videos/brushing_3.mp4',
+        'videos/brushing_1.mp4',
+        'videos/brushing_2.mp4',
+        'videos/brushing_3.mp4',
         // เพิ่มวิดีโออื่นๆ ที่นี่ ตามลำดับการแปรงแต่ละด้าน
     ];
 
