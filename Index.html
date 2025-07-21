@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>มาแปรงฟันกัน!</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div id="start-screen">
+            <h1>แปรงฟันกันเถอะ!!</h1>
+            <button id="startButton">START!</button>
+        </div>
+
+        <div id="countdown-screen" class="hidden">
+            <h1 id="countdown-display">3</h1>
+        </div>
+
+        <div id="brushing-screen" class="hidden">
+            <video id="brushing-video" autoplay muted playsinline>
+                Your browser does not support the video tag.
+            </video>
+            <progress id="video-progress" value="0" max="100"></progress>
+            <p>กำลังแปรงฟัน...</p>
+        </div>
+
+        <div id="change-side-screen" class="hidden">
+            <img id="warning-image" src="Images/warning_image.png" alt="เปลี่ยนด้าน">
+            <p>เตรียมพร้อมสำหรับด้านต่อไป</p>
+        </div>
+
+        <div id="end-screen" class="hidden">
+            <img id="correct-image" src="Images/correct_image.png" alt="แปรงฟันเสร็จแล้ว">
+            <h1>แปรงฟันเสร็จแล้ว!</h1>
+        </div>
+
+        <div id="back-button-container" class="hidden">
+            <i class="fas fa-arrow-left" id="backToStartIcon"></i>
+        </div>
+    </div>
+
+    <script src="Script.js"></script>
+</body>
+</html>

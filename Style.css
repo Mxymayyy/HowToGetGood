@@ -1,0 +1,239 @@
+/*
+ * ส่วนที่ 1: สไตล์พื้นฐานสำหรับหน้าจอขนาดเล็ก (Mobile First)
+ * สไตล์เหล่านี้จะถูกใช้เป็นค่าเริ่มต้นสำหรับอุปกรณ์มือถือและหน้าจอขนาดเล็ก
+ */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f8ff;
+    color: #333;
+    text-align: center;
+    position: relative; /* สำคัญ: ทำให้ position absolute ของปุ่มอ้างอิงกับ body */
+    overflow-x: hidden; /* ป้องกันการเกิด scrollbar แนวนอน */
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 90%; /* ให้ container กว้างไม่เกิน 90% ของหน้าจอ */
+    width: 320px; /* กำหนดความกว้างเริ่มต้นสำหรับมือถือ (จะถูก override ด้วย max-width หากหน้าจอใหญ่กว่า) */
+    box-sizing: border-box; /* ทำให้ padding และ border ไม่เพิ่มขนาดรวมของ element */
+}
+
+h1 {
+    font-size: 1.8rem; /* ใช้ rem เพื่อให้ยืดหยุ่น */
+    color: #2e8b57;
+    margin-bottom: 1.5rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* สไตล์เฉพาะสำหรับหน้าเปลี่ยนด้าน */
+#change-side-screen h1 {
+    font-size: 2.5rem;
+    color: #ff4500;
+    animation: bounceIn 0.8s;
+}
+
+/* Keyframes สำหรับอนิเมชั่น */
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+button {
+    padding: 1rem 2rem; /* ใช้ rem */
+    font-size: 1.2rem;  /* ใช้ rem */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1.5rem; /* ใช้ rem */
+    width: 100%; /* ให้ปุ่มกว้างเต็มพื้นที่บนมือถือ */
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#countdown-display {
+    font-size: 4rem; /* ใช้ rem */
+    color: #ff4500;
+}
+
+#brushing-video {
+    max-width: 100%; /* ให้วิดีโอกว้างไม่เกิน container */
+    height: auto;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+/* สไตล์สำหรับรูปภาพ Warning และ Correct */
+#warning-image{
+    max-width: 80%; /* จำกัดขนาดรูปภาพไม่ให้ใหญ่เกินไป */
+    height: auto;
+    margin-bottom: 1rem;
+    animation: bounceIn 0.8s;
+}
+#correct-image {
+    max-width: 20%; /* จำกัดขนาดรูปภาพไม่ให้ใหญ่เกินไป */
+    height: auto;
+    margin-bottom: 1rem;
+    animation: bounceIn 0.8s;
+}
+/* สไตล์สำหรับ Progress Bar */
+#video-progress {
+    width: 90%; /* ให้ Progress Bar กว้างขึ้นบนมือถือ */
+    height: 12px; /* ลดความสูงลงเล็กน้อย */
+    margin-top: 1rem;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #e0e0e0;
+}
+
+#video-progress::-webkit-progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+#video-progress::-webkit-progress-value {
+    background-color: #2e8b57;
+    border-radius: 10px;
+}
+
+#video-progress::-moz-progress-bar {
+    background-color: #2e8b57;
+    border-radius: 10px;
+}
+
+/* สไตล์สำหรับปุ่มกลับไปหน้าเริ่มต้น (ไอคอนลูกศร) */
+#back-button-container {
+    position: absolute;
+    top: 15px; /* ลดระยะห่างจากขอบบน */
+    left: 15px; /* ลดระยะห่างจากขอบซ้าย */
+    background-color: #f44336;
+    color: white;
+    border-radius: 50%;
+    width: 40px; /* ลดขนาดปุ่ม */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem; /* ลดขนาดไอคอน */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+
+#back-button-container:hover {
+    background-color: #da190b;
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+/*
+ * ส่วนที่ 2: Media Queries สำหรับหน้าจอขนาดกลาง (เช่น แท็บเล็ต)
+ * สไตล์เหล่านี้จะถูกใช้เมื่อหน้าจอมีความกว้างอย่างน้อย 600px
+ */
+@media (min-width: 600px) {
+    .container {
+        width: 60%; /* กว้าง 60% ของหน้าจอ แต่ไม่เกิน 500px */
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    button {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.4rem;
+        width: auto; /* ปุ่มกลับมากว้างเท่าที่เนื้อหาต้องการ */
+    }
+
+    #countdown-display {
+        font-size: 5rem;
+    }
+
+    #video-progress {
+        width: 80%;
+        height: 15px;
+    }
+
+    #back-button-container {
+        top: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+    }
+}
+
+/*
+ * ส่วนที่ 3: Media Queries สำหรับหน้าจอขนาดใหญ่ (เช่น เดสก์ท็อป)
+ * สไตล์เหล่านี้จะถูกใช้เมื่อหน้าจอมีความกว้างอย่างน้อย 992px
+ */
+@media (min-width: 992px) {
+    .container {
+        width: 400px; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
+        max-width: 400px; /* จำกัดไม่ให้กว้างเกิน 400px */
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    button {
+        padding: 1.5rem 3rem;
+        font-size: 1.5rem;
+    }
+}
