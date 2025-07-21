@@ -14,6 +14,7 @@ body {
     text-align: center;
     position: relative; /* สำคัญ: ทำให้ position absolute ของปุ่มอ้างอิงกับ body */
     overflow-x: hidden; /* ป้องกันการเกิด scrollbar แนวนอน */
+    overflow-y: hidden;
 }
 
 .container {
