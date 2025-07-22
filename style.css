@@ -49,7 +49,7 @@ p {
 #change-side-screen h1 {
     font-size: 2.5rem;
     color: #ff4500;
-    animation: bounceIn 0.8s;
+    animation: bounceIn 1.8s;
 }
 
 /* Keyframes สำหรับอนิเมชั่น */
@@ -120,8 +120,8 @@ button:hover {
 }
 
 /* สไตล์สำหรับรูปภาพ Warning และ Correct */
-#warning-image{
-    max-width: 30%; /* จำกัดขนาดรูปภาพไม่ให้ใหญ่เกินไป */
+#warning-video {
+    max-width: 50%; /* จำกัดขนาดรูปภาพไม่ให้ใหญ่เกินไป */
     height: auto;
     margin-bottom: 1rem;
     animation: bounceIn 0.8s;
@@ -228,3 +228,4 @@ button:hover {
         margin-bottom: 1rem;
         animation: bounceIn 0.8s;
     }
+}
