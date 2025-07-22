@@ -121,7 +121,7 @@ button:hover {
 
 /* สไตล์สำหรับรูปภาพ Warning และ Correct */
 #warning-image{
-    max-width: 80%; /* จำกัดขนาดรูปภาพไม่ให้ใหญ่เกินไป */
+    max-width: 30%; /* จำกัดขนาดรูปภาพไม่ให้ใหญ่เกินไป */
     height: auto;
     margin-bottom: 1rem;
     animation: bounceIn 0.8s;
