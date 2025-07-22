@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoList = [
         'videos/brushing_1.mp4',
         'videos/brushing_2.mp4',
-        'videos/brushing_3.mp4',
-        'videos/brushing_4.mp4',
-        'videos/brushing_5.mp4',
-        'videos/brushing_6.mp4',
-        'videos/brushing_7.mp4',
-        'videos/brushing_8.mp4',
-        'videos/brushing_9.mp4',
+        //'videos/brushing_3.mp4',
+        //'videos/brushing_4.mp4',
+        //'videos/brushing_5.mp4',
+        //'videos/brushing_6.mp4',
+        //'videos/brushing_7.mp4',
+        //'videos/brushing_8.mp4',
+        //'videos/brushing_9.mp4',
     ];
 
     let currentVideoIndex = 0;
