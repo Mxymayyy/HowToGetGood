@@ -113,7 +113,7 @@ button:hover {
 }
 
 #brushing-video {
-    max-width: 80%; /* ให้วิดีโอเต็มความกว้างของ container */
+    max-width: 100%; /* ให้วิดีโอเต็มความกว้างของ container */
     height: auto; /* ปรับความสูงอัตโนมัติ */
     border-radius: 8px;
     margin-top: 1.5rem;
