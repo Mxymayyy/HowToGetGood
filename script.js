@@ -12,27 +12,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const brushingVideo = document.getElementById('brushing-video');
     const videoProgress = document.getElementById('video-progress');
 
-    // Element สำหรับปุ่มกลับไปหน้าเริ่มต้น (ไอคอนลูกศร)
-    const backButtonContainer = document.getElementById('back-button-container'); // เลือก container ของปุ่ม
-    const backToStartIcon = document.getElementById('backToStartIcon'); // เลือกตัวไอคอนเอง (เผื่อต้องการสไตล์เฉพาะ)
+    // เพิ่ม Element สำหรับวิดีโอ Warning
+    const warningVideo = document.getElementById('warning-video');
 
-    // รายการวิดีโอแปรงฟันของคุณ (ใส่ path relative)
+    // เพิ่ม Element สำหรับแสดงความคืบหน้า (เช่น 2/17)
+    const videoProgressDisplay = document.getElementById('video-progress-display');
+
+    // Element สำหรับปุ่มกลับไปหน้าเริ่มต้น (ไอคอนลูกศร)
+    const backButtonContainer = document.getElementById('back-button-container');
+
+    // วิดีโอแปรงฟัน
     const videoList = [
         'videos/brushing_1.mp4',
         'videos/brushing_2.mp4',
-        //'videos/brushing_3.mp4',
-        //'videos/brushing_4.mp4',
-        //'videos/brushing_5.mp4',
-        //'videos/brushing_6.mp4',
-        //'videos/brushing_7.mp4',
-        //'videos/brushing_8.mp4',
-        //'videos/brushing_9.mp4',
+        'videos/brushing_3.mp4',
+        'videos/brushing_4.mp4',
+        'videos/brushing_5.mp4',
+        'videos/brushing_6.mp4',
+        'videos/brushing_7.mp4',
+        'videos/brushing_8.mp4',
+        'videos/brushing_9.mp4',
+        'videos/brushing_10.mp4',
+        'videos/brushing_11.mp4',
+        'videos/brushing_12.mp4',
+        'videos/brushing_13.mp4',
+        'videos/brushing_14.mp4',
+
     ];
 
+    // วิดีโอ Warning
+    const warningVideoList = [
+        'videos/warning_1.mp4',
+        'videos/warning_2.mp4',
+        'videos/warning_3.mp4',
+        'videos/warning_4.mp4',
+        'videos/warning_5.mp4',
+        'videos/warning_6.mp4',
+        'videos/warning_7.mp4',
+        'videos/warning_8.mp4',
+        'videos/warning_9.mp4',
+        'videos/warning_10.mp4',
+        'videos/warning_11.mp4',
+        'videos/warning_12.mp4',
+        'videos/warning_13.mp4',
+    ];
+
+    const totalVideos = videoList.length; // จำนวนวิดีโอทั้งหมด
+
     let currentVideoIndex = 0;
-    const CHANGE_SIDE_DISPLAY_TIME = 2000; // แสดงหน้า "เปลี่ยนด้าน" 2 วินาที
-    let countdownIntervalId; // สำหรับเก็บ ID ของ setInterval ของ countdown
-    let videoTimerId; // สำหรับเก็บ ID ของ setTimeout ของ video (ถ้ามี)
+    let countdownIntervalId;
 
     // --- ฟังก์ชันควบคุมหน้าจอ ---
     function showScreen(screenId) {
@@ -58,14 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetAndGoToStart() {
         // หยุด Timer ที่กำลังทำงานอยู่ทั้งหมด
         if (countdownIntervalId) clearInterval(countdownIntervalId);
-        if (videoTimerId) clearTimeout(videoTimerId);
 
         // หยุดวิดีโอและรีเซ็ตตำแหน่ง
         brushingVideo.pause();
         brushingVideo.currentTime = 0;
         videoProgress.value = 0; // รีเซ็ต Progress Bar
+        warningVideo.pause(); // หยุดวิดีโอ warning ด้วย
+        warningVideo.currentTime = 0;
 
         currentVideoIndex = 0; // รีเซ็ตดัชนีวิดีโอ
+        videoProgressDisplay.textContent = ''; // ล้างข้อความแสดงความคืบหน้า
 
         showScreen('start-screen'); // กลับไปหน้าเริ่มต้น
     }
@@ -104,12 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- กระบวนการแปรงฟัน (เล่นวิดีโอและเปลี่ยนด้าน) ---
     function startBrushingProcess() {
-        if (currentVideoIndex < videoList.length) {
+        if (currentVideoIndex < totalVideos) { // ใช้ totalVideos แทน videoList.length
             brushingVideo.src = videoList[currentVideoIndex];
             brushingVideo.load();
+            
+            // อัปเดตข้อความแสดงความคืบหน้า
+            videoProgressDisplay.textContent = `${currentVideoIndex + 1}/${totalVideos}`;
 
             // ตั้งค่า max ของ Progress Bar เป็นความยาวของวิดีโอปัจจุบัน
-            // ต้องรอให้ metadata โหลดเสร็จก่อน
             brushingVideo.onloadedmetadata = () => {
                 videoProgress.max = brushingVideo.duration;
             };
@@ -119,35 +151,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 videoProgress.value = brushingVideo.currentTime;
             };
 
-            // Event Listener เมื่อวิดีโอเล่นจบ
+            // Event Listener เมื่อวิดีโอ brushing เล่นจบ
             brushingVideo.onended = () => {
-                // รีเซ็ต Progress Bar เมื่อจบวิดีโอ
-                videoProgress.value = 0;
+                videoProgress.value = 0; // รีเซ็ต Progress Bar
 
-                // ถ้าไม่ใช่คลิปสุดท้าย ให้แสดงหน้า "เปลี่ยนด้าน"
-                if (currentVideoIndex < videoList.length - 1) {
-                    showScreen('change-side-screen');
-                    videoTimerId = setTimeout(() => { // เก็บ ID ของ Timeout
-                        currentVideoIndex++; // ไปยังวิดีโอถัดไป
-                        showScreen('brushing-screen'); // กลับไปหน้าวิดีโอ
-                        startBrushingProcess(); // เล่นวิดีโอถัดไป
-                    }, CHANGE_SIDE_DISPLAY_TIME); // แสดงหน้าเปลี่ยนด้านตามเวลาที่กำหนด
+                // ถ้าไม่ใช่คลิปสุดท้าย ให้แสดงหน้า "เปลี่ยนด้าน" และเล่นวิดีโอ warning
+                if (currentVideoIndex < totalVideos - 1) { // ใช้ totalVideos แทน videoList.length
+                    // ตรวจสอบว่ามีวิดีโอ warning สำหรับด้านนี้หรือไม่
+                    if (warningVideoList[currentVideoIndex]) {
+                        showScreen('change-side-screen');
+                        warningVideo.src = warningVideoList[currentVideoIndex];
+                        warningVideo.load();
+                        warningVideo.play().catch(error => {
+                            console.error("Warning video autoplay failed:", error);
+                        });
+
+                        // เมื่อวิดีโอ warning เล่นจบ ค่อยไปด้านต่อไป
+                        warningVideo.onended = () => {
+                            currentVideoIndex++; // ไปยังวิดีโอ brushing ถัดไป
+                            showScreen('brushing-screen'); // กลับไปหน้าวิดีโอ brushing
+                            startBrushingProcess(); // เล่นวิดีโอ brushing ถัดไป
+                        };
+                    } else {
+                        // ถ้าไม่มีวิดีโอ warning สำหรับด้านนี้ ให้ข้ามไป brushing ถัดไปเลย
+                        console.warn(`Warning video for index ${currentVideoIndex} not found. Skipping.`);
+                        currentVideoIndex++; // ไปยังวิดีโอ brushing ถัดไป
+                        showScreen('brushing-screen');
+                        startBrushingProcess();
+                    }
                 } else {
-                    // ถ้าเป็นคลิปสุดท้ายแล้ว ให้แสดงหน้าจบ
+                    // ถ้าเป็นคลิปสุดท้ายแล้ว (brushing_video สุดท้ายจบ) ให้แสดงหน้าจบ
                     showScreen('end-screen');
-                    // หยุดวิดีโอและรีเซ็ตตำแหน่งเล่น
                     brushingVideo.pause();
                     brushingVideo.currentTime = 0;
                 }
             };
 
-            // พยายามเล่นวิดีโอ
+            // พยายามเล่นวิดีโอ brushing
             brushingVideo.play().catch(error => {
-                console.error("Video autoplay failed:", error);
+                console.error("Brushing video autoplay failed:", error);
             });
 
         } else {
-            // กรณีที่ไม่มีวิดีโอให้เล่นแล้ว
+            // กรณีที่ไม่มีวิดีโอ brushing ให้เล่นแล้ว (แต่ควรจะถูกจับโดย currentVideoIndex < totalVideos)
             showScreen('end-screen');
             brushingVideo.pause();
             brushingVideo.currentTime = 0;
