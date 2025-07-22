@@ -19,14 +19,19 @@ body {
 }
 
 .container {
+    background-color: #fff;
     width: 300px; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
     max-width: 80%; /* จำกัดไม่ให้กว้างเกิน 400px */
     height: auto;
+    margin: 0 auto; /* จัดกึ่งกลาง container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
         
 }
 
 h1 {
-    font-size: 5rem; /* ใช้ rem เพื่อให้ยืดหยุ่น */
+    font-size: 3rem; /* ใช้ rem เพื่อให้ยืดหยุ่น */
     color: #2e8b57;
     margin-bottom: 1.5rem;
 }
@@ -80,7 +85,7 @@ p {
 
 button {
     padding: 1rem 2rem; /* ใช้ rem */
-    font-size: 5rem;  /* ใช้ rem เพื่อให้ยืดหยุ่น */
+    font-size: 3rem;  /* ใช้ rem เพื่อให้ยืดหยุ่น */
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -104,7 +109,7 @@ button:hover {
 }
 
 #brushing-video {
-    max-width: 50%; /* ให้วิดีโอเต็มความกว้างของ container */
+    max-width: 90%; /* ให้วิดีโอเต็มความกว้างของ container */
     height: auto; /* ปรับความสูงอัตโนมัติ */
     border-radius: 8px;
     margin-top: 1.5rem;
