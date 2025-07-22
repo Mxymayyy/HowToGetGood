@@ -24,12 +24,18 @@ body {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 90%; /* ให้ container กว้างไม่เกิน 90% ของหน้าจอ */
-    width: 320px; /* กำหนดความกว้างเริ่มต้นสำหรับมือถือ (จะถูก override ด้วย max-width หากหน้าจอใหญ่กว่า) */
+    min-width: 300px; /* กำหนดความกว้างขั้นต่ำเพื่อไม่ให้เล็กเกินไป */
+    margin: 0 auto; /* จัดกึ่งกลาง container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem; /* ใช้ rem เพื่อให้ยืดหยุ่น */
+    width: auto; /* กำหนดความกว้างเริ่มต้นสำหรับมือถือ (จะถูก override ด้วย max-width หากหน้าจอใหญ่กว่า) */
     box-sizing: border-box; /* ทำให้ padding และ border ไม่เพิ่มขนาดรวมของ element */
 }
 
 h1 {
-    font-size: 1.8rem; /* ใช้ rem เพื่อให้ยืดหยุ่น */
+    font-size: 5rem; /* ใช้ rem เพื่อให้ยืดหยุ่น */
     color: #2e8b57;
     margin-bottom: 1.5rem;
 }
@@ -83,14 +89,14 @@ p {
 
 button {
     padding: 1rem 2rem; /* ใช้ rem */
-    font-size: 1.2rem;  /* ใช้ rem */
+    font-size: 5rem;  /* ใช้ rem เพื่อให้ยืดหยุ่น */
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 1.5rem; /* ใช้ rem */
+    margin-top: 1rem; /* ใช้ rem */
     width: 100%; /* ให้ปุ่มกว้างเต็มพื้นที่บนมือถือ */
     box-sizing: border-box;
 }
@@ -100,13 +106,15 @@ button:hover {
 }
 
 #countdown-display {
-    font-size: 4rem; /* ใช้ rem */
+    font-size: 20rem; /* ใช้ rem */
     color: #ff4500;
+    text-align: center;
+    margin-top: 1rem; /* ใช้ rem */
 }
 
 #brushing-video {
-    max-width: 100%; /* ให้วิดีโอกว้างไม่เกิน container */
-    height: auto;
+    max-width: 50%; /* ให้วิดีโอเต็มความกว้างของ container */
+    height: auto; /* ปรับความสูงอัตโนมัติ */
     border-radius: 8px;
     margin-top: 1.5rem;
 }
@@ -184,31 +192,13 @@ button:hover {
 /*
  * ส่วนที่ 2: Media Queries สำหรับหน้าจอขนาดกลาง (เช่น แท็บเล็ต)
  * สไตล์เหล่านี้จะถูกใช้เมื่อหน้าจอมีความกว้างอย่างน้อย 600px
- */
+*/
 @media (min-width: 600px) {
-    .container {
-        width: 60%; /* กว้าง 60% ของหน้าจอ แต่ไม่เกิน 500px */
-        max-width: 500px;
-        padding: 30px;
-    }
-
-    h1 {
-        font-size: 2.2rem;
-    }
-
-    button {
-        padding: 1.2rem 2.5rem;
-        font-size: 1.4rem;
-        width: auto; /* ปุ่มกลับมากว้างเท่าที่เนื้อหาต้องการ */
-    }
-
-    #countdown-display {
-        font-size: 5rem;
-    }
-
-    #video-progress {
-        width: 80%;
-        height: 15px;
+    #brushing-video  {
+        max-width: 50%; /* ให้วิดีโอเต็มความกว้างของ container */
+        height: auto; /* ปรับความสูงอัตโนมัติ */
+        border-radius: 8px;
+        margin-top: 1.5rem;
     }
 
     #back-button-container {
@@ -223,19 +213,17 @@ button:hover {
 /*
  * ส่วนที่ 3: Media Queries สำหรับหน้าจอขนาดใหญ่ (เช่น เดสก์ท็อป)
  * สไตล์เหล่านี้จะถูกใช้เมื่อหน้าจอมีความกว้างอย่างน้อย 992px
- */
+*/
 @media (min-width: 992px) {
     .container {
-        width: 400px; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
-        max-width: 400px; /* จำกัดไม่ให้กว้างเกิน 400px */
+        width: auto; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
+        max-width: 100%; /* จำกัดไม่ให้กว้างเกิน 400px */
+    }
+    #brushing-video  {
+        max-width: 50%; /* ให้วิดีโอเต็มความกว้างของ container */
+        height: auto; /* ปรับความสูงอัตโนมัติ */
+        border-radius: 8px;
+        margin-top: 1.5rem;
     }
 
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    button {
-        padding: 1.5rem 3rem;
-        font-size: 1.5rem;
-    }
 }
