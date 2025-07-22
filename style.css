@@ -23,7 +23,8 @@ body {
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 90%; /* ให้ container กว้างไม่เกิน 90% ของหน้าจอ */
+    width: auto; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
+    max-width: 90%; /* จำกัดไม่ให้กว้างเกิน 90% */
     min-width: 300px; /* กำหนดความกว้างขั้นต่ำเพื่อไม่ให้เล็กเกินไป */
     margin: 0 auto; /* จัดกึ่งกลาง container */
     display: flex;
