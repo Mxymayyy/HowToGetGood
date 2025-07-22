@@ -19,20 +19,8 @@ body {
 }
 
 .container {
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: auto; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
-    max-width: 90%; /* จำกัดไม่ให้กว้างเกิน 90% */
-    min-width: 300px; /* กำหนดความกว้างขั้นต่ำเพื่อไม่ให้เล็กเกินไป */
-    margin: 0 auto; /* จัดกึ่งกลาง container */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem; /* ใช้ rem เพื่อให้ยืดหยุ่น */
-    width: auto; /* กำหนดความกว้างเริ่มต้นสำหรับมือถือ (จะถูก override ด้วย max-width หากหน้าจอใหญ่กว่า) */
-    box-sizing: border-box; /* ทำให้ padding และ border ไม่เพิ่มขนาดรวมของ element */
+        width: auto; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
+        max-width: 100%; /* จำกัดไม่ให้กว้างเกิน 400px */
 }
 
 h1 {
