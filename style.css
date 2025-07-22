@@ -21,7 +21,7 @@ body {
 .container {
     background-color: #fff;
     width: 300px; /* กลับไปใช้ความกว้างคงที่เดิมสำหรับเดสก์ท็อป */
-    max-width: 80%; /* จำกัดไม่ให้กว้างเกิน 400px */
+    max-width: 80%;
     height: auto;
     margin: 0 auto; /* จัดกึ่งกลาง container */
     display: flex;
@@ -191,7 +191,7 @@ button:hover {
 */
 @media (min-width: 600px) {
     #brushing-video  {
-        max-width: 50%; /* ให้วิดีโอเต็มความกว้างของ container */
+        max-width: 80%; /* ให้วิดีโอเต็มความกว้างของ container */
         height: auto; /* ปรับความสูงอัตโนมัติ */
         border-radius: 8px;
         margin-top: 1.5rem;
