@@ -40,7 +40,7 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
-p {
+p,span {
     font-size: 1rem;
     line-height: 1.5;
 }
