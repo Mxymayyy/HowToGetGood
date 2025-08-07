@@ -21,41 +21,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // Element สำหรับปุ่มกลับไปหน้าเริ่มต้น (ไอคอนลูกศร)
     const backButtonContainer = document.getElementById('back-button-container');
 
-    // วิดีโอแปรงฟัน
+        // วิดีโอแปรงฟัน
     const videoList = [
-        'videos/brushing_1.mp4',
-        'videos/brushing_2.mp4',
-        'videos/brushing_3.mp4',
-        'videos/brushing_4.mp4',
-        'videos/brushing_5.mp4',
-        'videos/brushing_6.mp4',
-        'videos/brushing_7.mp4',
-        'videos/brushing_8.mp4',
-        'videos/brushing_9.mp4',
-        'videos/brushing_10.mp4',
-        'videos/brushing_11.mp4',
-        'videos/brushing_12.mp4',
-        'videos/brushing_13.mp4',
-        'videos/brushing_14.mp4',
+        'brushing_1.mp4',
+        'brushing_2.mp4',
+        'brushing_3.mp4',
+        'brushing_4.mp4',
+        'brushing_5.mp4',
+        'brushing_6.mp4',
+        'brushing_7.mp4',
+        'brushing_8.mp4',
+        'brushing_9.mp4',
+        'brushing_10.mp4',
+        'brushing_11.mp4',
+        'brushing_12.mp4',
+        'brushing_13.mp4',
+        'brushing_14.mp4',
+
     ];
 
     // วิดีโอ Warning
     const warningVideoList = [
-        'videos/warning_1.mp4',
-        'videos/warning_2.mp4',
-        'videos/warning_3.mp4',
-        'videos/warning_4.mp4',
-        'videos/warning_5.mp4',
-        'videos/warning_6.mp4',
-        'videos/warning_7.mp4',
-        'videos/warning_8.mp4',
-        'videos/warning_9.mp4',
-        'videos/warning_10.mp4',
-        'videos/warning_11.mp4',
-        'videos/warning_12.mp4',
-        'videos/warning_13.mp4',
+        'warning_1.mp4',
+        'warning_2.mp4',
+        'warning_3.mp4',
+        'warning_4.mp4',
+        'warning_5.mp4',
+        'warning_6.mp4',
+        'warning_7.mp4',
+        'warning_8.mp4',
+        'warning_9.mp4',
+        'warning_10.mp4',
+        'warning_11.mp4',
+        'warning_12.mp4',
+        'warning_13.mp4',
     ];
-
     const totalVideos = videoList.length; // จำนวนวิดีโอทั้งหมด
 
     let currentVideoIndex = 0;
